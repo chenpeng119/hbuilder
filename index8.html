@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="favicon.ico" rel="shortcut icon">
+		<style type="text/css">
+			table {
+	                  border: 1px solid black;
+	                  text-align: center;
+                  }
+
+            td {
+                      border: 1px solid silver;
+	                  width: 250px;
+               }
+               form{
+               	display: inline-block;
+               }
+		</style>
+	</head>
+	<body>
+		
+		<form name="nameform" style="margin-left: 150px;margin-top: 100px;">
+			姓名：<input type="text"  name="xingmin"  />
+		</form>
+		<form name="sexform">
+			<input type="radio" name="sex"  value="男" checked="checked"/>男
+			<input type="radio" name="sex"  value="女"/>女
+			<input type="radio" name="sex"  value="妖"/>妖
+		</form>
+		<button onclick="AddTd()">增加一行</button>
+		<table id="myTable">
+			
+			<tr>
+				<td bgcolor="peachpuff">编号</td>
+			    <td bgcolor="peachpuff">姓名</td>
+			    <td bgcolor="peachpuff">性别</td>
+			    <td bgcolor="peachpuff">操作</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Qghappy</td>
+				<td>男</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>We</td>
+				<td>男</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>BA</td>
+				<td>男</td>
+				<td><a href="#">删除</a></td>
+			</tr>
+		</table>
+		
+		<script>
+			var table=document.getElementById("myTable");
+			var name =document.getElementById("name");
+
+			function AddTd() {
+				var num=table.tBodies[0].rows.length;
+				var newtr=document.createElement("tr");
+				var newtd1=document.createElement("td");
+				newtd1.innerHTML=num++;
+				newtr.appendChild(newtd1);
+				
+				var newtd2=document.createElement("td");
+				newtd2.innerHTML=document.nameform.xingmin.value;
+				newtd2.style.color="black";
+				newtr.appendChild(newtd2);
+				
+				var newtd3=document.createElement("td");
+				newtd3.innerHTML=document.sexform.sex.value;
+				newtr.appendChild(newtd3);
+				
+				var newtd4=document.createElement("td");
+				newtd4.innerHTML="<a href='#' style='text-decoration: none;'>删除</a>";
+				newtr.appendChild(newtd4);
+				
+				table.tBodies[0].appendChild(newtr);
+				
+				newtd4.getElementsByTagName("a")[0].onclick=function(){
+					table.tBodies[0].removeChild(this.parentNode.parentNode);
+				}
+				newtd2.addEventListener("mouseover",over);
+				function over(){
+					newtd2.style.color="red";	
+				}
+				newtd2.addEventListener("mouseout",out);
+				function out(){
+					newtd2.style.color="black";
+				}				
+}
+			
+		
+		</script>
+	</body>
+</html>
